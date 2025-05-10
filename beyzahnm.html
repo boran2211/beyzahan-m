@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Beyza Hanıma Sürpriz</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body, html {
+      height: 100%; width: 100%; background: black; color: white;
+      display: flex; justify-content: center; align-items: center;
+      flex-direction: column; font-family: Arial, sans-serif;
+    }
+    button {
+      padding: 15px 30px; margin: 10px; font-size: 1.2rem;
+      border: none; border-radius: 10px; cursor: pointer;
+      background-color: crimson; color: white;
+      transition: background 0.3s;
+    }
+    button:hover { background-color: darkred; }
+    .hidden { display: none; }
+    #finalMessage { font-size: 1.5rem; color: yellow; text-align: center; padding: 20px; }
+  </style>
+</head>
+<body>
+
+  <div id="start">
+    <button onclick="chooseParty('cehape')">CEHAPE</button>
+    <button onclick="chooseParty('akape')">AKAPE</button>
+  </div>
+
+  <div id="middle" class="hidden">
+    <p style="margin-top: 20px; font-size: 1.3rem;">PARTİLER BİZLİK DEĞİL</p>
+    <button onclick="startBeautyTest()">BEYZA HANIM TIKLA GEÇ</button>
+  </div>
+
+  <div id="loading" class="hidden">
+    <p style="font-size: 1.4rem;">GÜZELLİK ÖLÇÜLÜYOR...</p>
+  </div>
+
+  <div id="result1" class="hidden">
+    <p style="font-size: 1.4rem; color: red;">OBEZ = AKAPE KARDEŞİM SEN PUST ÇIKTIN</p>
+  </div>
+
+  <div id="finalMessage" class="hidden">
+    BEYZA HANIM ÇOK GÜZELİNİZ 💖<br>ŞAKA YAPTIK, SIKMA CANINI 😘<br>OKŞA PATLICANINI 🍆
+  </div>
+
+  <script>
+    let choices = {
+      cehape: false,
+      akape: false
+    };
+
+    function chooseParty(party) {
+      choices[party] = true;
+      if (choices.cehape && choices.akape) {
+        document.getElementById('start').classList.add('hidden');
+        document.getElementById('middle').classList.remove('hidden');
+      }
+    }
+
+    function startBeautyTest() {
+      document.getElementById('middle').classList.add('hidden');
+      document.getElementById('loading').classList.remove('hidden');
+
+      setTimeout(() => {
+        document.getElementById('loading').classList.add('hidden');
+        document.getElementById('result1').classList.remove('hidden');
+
+        setTimeout(() => {
+          document.getElementById('result1').classList.add('hidden');
+          document.getElementById('finalMessage').classList.remove('hidden');
+        }, 5000); // 5 saniye sonra final mesajı
+      }, 15000); // 15 saniye sonra ilk sonuç
+    }
+  </script>
+
+</body>
+</html>
